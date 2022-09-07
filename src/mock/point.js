@@ -1,5 +1,5 @@
 import dayjs from 'dayjs';
-import {getRandomInteger, generateIdsArr} from '../utils.js';
+import {getRandomInteger, generateIdsArr} from '../utils/common.js';
 import {TYPES, TOWNS} from '../const.js';
 
 const idsArray = generateIdsArr(50);
