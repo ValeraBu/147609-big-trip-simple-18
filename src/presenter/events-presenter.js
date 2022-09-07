@@ -1,5 +1,6 @@
 import EventView from '../view/point-view.js';
 import EventEditView from '../view/event-edit-view.js';
+import ListEmptyView from '../view/list-empty-view.js';
 import TripEventsListView from '../view/trip-events-list-view.js';
 import SortView from '../view/sort-view.js';
 import {render} from '../render.js';
@@ -21,8 +22,12 @@ export default class EventsPresenter {
     render(this.#sortViewComponent, this.#eventsContainer);
     render(this.#tripListComponent, this.#eventsContainer);
 
-    for (let i = 0; i < this.#points.length; i++) {
-      this.#renderPoint(this.#points[i]);
+    if(this.#points.length > 0) {
+      for (let i = 0; i < this.#points.length; i++) {
+        this.#renderPoint(this.#points[i]);
+      }
+    } else {
+      render(new ListEmptyView(), this.#tripListComponent.element);
     }
   };
 
