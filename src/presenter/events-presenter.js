@@ -4,13 +4,13 @@ import EventEditView from '../view/event-edit-view.js';
 import ListEmptyView from '../view/list-empty-view.js';
 import TripEventsListView from '../view/trip-events-list-view.js';
 import SortView from '../view/sort-view.js';
+import {generateSort} from '../mock/sort.js';
 
 export default class EventsPresenter {
   #eventsContainer = null;
   #pointsModel = null;
 
   #tripListComponent = new TripEventsListView();
-  #sortViewComponent = new SortView();
 
   #points = [];
 
@@ -19,7 +19,7 @@ export default class EventsPresenter {
     this.#pointsModel = pointsModel;
     this.#points = [...this.#pointsModel.points];
 
-    render(this.#sortViewComponent, this.#eventsContainer);
+    render(new SortView(generateSort()), this.#eventsContainer);
     render(this.#tripListComponent, this.#eventsContainer);
 
     if(this.#points.length > 0) {
