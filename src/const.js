@@ -18,4 +18,17 @@ const TOWNS = [
   'Moscow'
 ];
 
-export {TYPES, TOWNS};
+const SORT_VALUES = {
+  DAY: 'day',
+  EVENT: 'event',
+  TIME: 'time',
+  PRICE: 'price',
+  OFFERS: 'offers'
+};
+
+const FILTER_TYPES = {
+  EVERYTHING: 'everything',
+  FUTURE: 'future'
+};
+
+export {TYPES, TOWNS, FILTER_TYPES, SORT_VALUES};
