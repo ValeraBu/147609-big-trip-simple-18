@@ -1,6 +1,6 @@
 import {render} from './framework/render.js';
 import FilterView from './view/filter-view.js';
-import PagePresenter from './presenter/events-presenter.js';
+import PagePresenter from './presenter/page-presenter.js';
 import PointsModel from './model/points-model.js';
 import {generateFilter} from './mock/filter.js';
 
