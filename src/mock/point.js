@@ -63,7 +63,6 @@ export const generatePoint = () => ({
   dateFrom: generateDate(),
   dateTo: generateDate(),
   destination: generateDestination(),
-  // id: getRandomInteger(0, 1000),
   id: nanoid(),
   offers: Array.from({length: 5}, generateOffer),
   type: getRandomType()

@@ -18,7 +18,7 @@ const TOWNS = [
   'Moscow'
 ];
 
-const SORT_VALUES = {
+const SORT_TYPE = {
   DAY: 'day',
   EVENT: 'event',
   TIME: 'time',
@@ -31,4 +31,4 @@ const FILTER_TYPES = {
   FUTURE: 'future'
 };
 
-export {TYPES, TOWNS, FILTER_TYPES, SORT_VALUES};
+export {TYPES, TOWNS, FILTER_TYPES, SORT_TYPE};
