@@ -1,5 +1,3 @@
-import {nanoid} from 'nanoid';
-
 const getRandomInteger = (a = 0, b = 1) => {
   const lower = Math.ceil(Math.min(a, b));
   const upper = Math.floor(Math.max(a, b));
@@ -7,7 +5,14 @@ const getRandomInteger = (a = 0, b = 1) => {
   return Math.floor(lower + Math.random() * (upper - lower + 1));
 };
 
-const generateIdsArr = (n) => (Array.from({length: n}, nanoid));
+const getMultipleRandom = (arr, num) => {
+  const shuffled = [...arr].sort(() => 0.5 - Math.random());
+  return shuffled.slice(0, num);
+};
+
+const getRandomArrayElement = (elements) => elements[getRandomInteger(0, elements.length - 1)];
+
+const getRandomSubArray = (elements) => elements.filter(() => Math.random() < 0.5);
 
 const updateItem = (items, update) => {
   const index = items.findIndex((item) => item.id === update.id);
@@ -25,6 +30,8 @@ const updateItem = (items, update) => {
 
 export {
   getRandomInteger,
-  generateIdsArr,
+  getRandomArrayElement,
+  getRandomSubArray,
+  getMultipleRandom,
   updateItem
 };

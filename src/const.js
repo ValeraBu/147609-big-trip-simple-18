@@ -1,4 +1,4 @@
-const TYPES = [
+const OFFER_TYPES = [
   'taxi',
   'bus',
   'train',
@@ -10,15 +10,7 @@ const TYPES = [
   'restaurant'
 ];
 
-const TOWNS = [
-  'Amsterdam',
-  'Chamonix',
-  'Geneva',
-  'Italia',
-  'Moscow'
-];
-
-const SORT_VALUES = {
+const SORT_TYPES = {
   DAY: 'day',
   EVENT: 'event',
   TIME: 'time',
@@ -31,4 +23,4 @@ const FILTER_TYPES = {
   FUTURE: 'future'
 };
 
-export {TYPES, TOWNS, FILTER_TYPES, SORT_VALUES};
+export {OFFER_TYPES, FILTER_TYPES, SORT_TYPES};
