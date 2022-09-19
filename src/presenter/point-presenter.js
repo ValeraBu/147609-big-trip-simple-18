@@ -1,6 +1,7 @@
 import {render, replace, remove} from '../framework/render.js';
 import EventView from '../view/point-view.js';
 import EventEditView from '../view/event-edit-view.js';
+import EventListItemView from '../view/event-list-item-view.js';
 
 const Mode = {
   DEFAULT: 'DEFAULT',
@@ -14,14 +15,21 @@ export default class PointPresenter {
 
   #pointComponent = null;
   #pointEditComponent = null;
+  #pointsModel = null;
 
   #point = null;
   #mode = Mode.DEFAULT;
 
-  constructor(pointListContainer, changeData, changeMode) {
+  constructor(pointListContainer, pointsModel, changeData, changeMode) {
     this.#pointListContainer = pointListContainer;
     this.#changeData = changeData;
     this.#changeMode = changeMode;
+    this.#pointsModel = pointsModel;
+    this.getOffersByType = this.#pointsModel.getOffersByType;
+    this.getDestination = this.#pointsModel.getDestination;
+    this.getAllDestinationNames = this.#pointsModel.getAllDestinationNames;
+    this.getOfferTypes = this.#pointsModel.getOfferTypes;
+    this.getAllOffersList = this.#pointsModel.getAllOffersList;
   }
 
   init = (point) => {
@@ -31,14 +39,17 @@ export default class PointPresenter {
     const prevPointEditComponent = this.#pointEditComponent;
 
     this.#pointComponent = new EventView(point);
-    this.#pointEditComponent = new EventEditView(point);
+    this.#pointEditComponent = new EventEditView(point, this.getOffersByType, this.getDestination, this.getAllDestinationNames, this.getOfferTypes, this.getAllOffersList);
 
     this.#pointComponent.setEditClickHandler(this.#handleEditClick);
     this.#pointEditComponent.setFormSubmitHandler(this.#handleFormSubmit);
     this.#pointEditComponent.setEditClickHandler(this.#replaceFormToCard);
 
+    const eventListItemElement = new EventListItemView();
+
     if (prevPointComponent === null || prevPointEditComponent === null) {
-      render(this.#pointComponent, this.#pointListContainer);
+      render(this.#pointComponent, eventListItemElement.element);
+      render(eventListItemElement, this.#pointListContainer);
       return null;
     }
 
@@ -61,6 +72,7 @@ export default class PointPresenter {
 
   resetView = () => {
     if (this.#mode !== Mode.DEFAULT) {
+      this.#pointEditComponent.reset(this.#point);
       this.#replaceFormToCard();
     }
   };
@@ -81,6 +93,7 @@ export default class PointPresenter {
   #escKeyDownHandler = (evt) => {
     if (evt.key === 'Escape' || evt.key === 'Esc') {
       evt.preventDefault();
+      this.#pointEditComponent.reset(this.#point);
       this.#replaceFormToCard();
     }
   };
