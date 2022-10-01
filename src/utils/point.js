@@ -1,14 +1,16 @@
 import dayjs from 'dayjs';
 
-const humanizePointDate = (date) => dayjs(date).format('MMM D');
+const humanizePointDate = (date) => dayjs(date).format('D MMM');
 
-const humanizePointTime = (date) => dayjs(date).format('hh:mm');
+const humanizePointEditDate = (date) => dayjs(date).format('DD/MM/YY HH:mm');
 
-const humanizePointDateNumber = (dueDate) => dayjs(dueDate).format('YYYY-MM-DD');
+const humanizePointRouteTime = (time) => dayjs(time).format('HH:mm');
 
-const getPointDateRFC = (dueDate) => dayjs(dueDate).format('YYYY-MM-DDTHH:mm');
+const isDataSubmitDisabled = (dateTo, dateFrom) => dayjs(dateTo).diff(dayjs(dateFrom)) < 0;
 
-const isDataSubmitDisabled = (dateTo, dateFrom) => dayjs(dateTo).diff(dayjs(dateFrom)) <= 0;
+const isDatesEqual = (pointA, pointB) => dayjs(pointA.dateFrom).isSame(pointB.dateFrom, 'D');
+
+const isPriceEqual = (pointA, pointB) => pointA.basePrice === pointB.basePrice;
 
 const sortPointDay = (pointA, pointB) => dayjs(pointA.dateFrom).diff(dayjs(pointB.dateFrom));
 
@@ -16,9 +18,10 @@ const sortPointPrice = (pointA, pointB) => pointB.basePrice - pointA.basePrice;
 
 export {
   humanizePointDate,
-  humanizePointTime,
-  humanizePointDateNumber,
-  getPointDateRFC,
+  humanizePointEditDate,
+  humanizePointRouteTime,
+  isDatesEqual,
+  isPriceEqual,
   isDataSubmitDisabled,
   sortPointDay,
   sortPointPrice
