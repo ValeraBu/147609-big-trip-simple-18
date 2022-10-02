@@ -8,7 +8,7 @@ import SortView from '../view/sort-view.js';
 import PointPresenter from './point-presenter.js';
 import NewPointPresenter from './new-point-presenter.js';
 
-import {SortType, UpdateType, FilterType, UserActions} from '../const.js';
+import {SortType, UpdateType, FilterType, UserActions, ErrorDataMessage} from '../const.js';
 import {sortPointDay, sortPointPrice} from '../utils/point.js';
 import LoadingView from '../view/loading-view.js';
 import {filter} from '../utils/filter.js';
@@ -27,6 +27,7 @@ export default class PagePresenter {
   #eventsListComponent = new EventsListView();
   #listEmptyComponent = null;
   #loadingComponent = new LoadingView();
+  #newEventButton = document.querySelector('.trip-main__event-add-btn');
 
   #isLoading = true;
   #uiBlocker = new UiBlocker(TimeLimit.LOWER_LIMIT, TimeLimit.UPPER_LIMIT);
@@ -119,8 +120,15 @@ export default class PagePresenter {
     points.forEach((point) => this.#renderPoint(point));
   };
 
+  #getErrorDataMessage() {
+    if (!this.#pointsModel.offers.length || !this.#pointsModel.destinations.length) {
+      this.#newEventButton.disabled = true;
+      return ErrorDataMessage;
+    }
+  }
+
   #renderListEmpty = () => {
-    this.#listEmptyComponent = new ListEmptyView(this.#filterType);
+    this.#listEmptyComponent = new ListEmptyView(this.#filterType, this.#getErrorDataMessage());
     render(this.#listEmptyComponent, this.#eventsListComponent.element);
   };
 
