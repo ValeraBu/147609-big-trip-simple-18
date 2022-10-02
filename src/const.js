@@ -46,6 +46,8 @@ const Mode = {
   EDITING: 'EDITING',
 };
 
+const ErrorDataMessage = 'Ooops! Something went wrong. Please try again later...';
+
 export {
   FilterType,
   SortType,
@@ -53,5 +55,6 @@ export {
   UserActions,
   DEFAULT_POINT,
   EmptyListTextValues,
-  Mode
+  Mode,
+  ErrorDataMessage
 };
