@@ -1,5 +1,5 @@
 import {remove, render, RenderPosition} from '../framework/render.js';
-import {USER_ACTIONS, UPDATE_TYPES, DEFAULT_POINT} from '../const.js';
+import {UserActions, UpdateType, DEFAULT_POINT} from '../const.js';
 import EventCreateView from '../view/event-create-view.js';
 
 export default class NewPointPresenter {
@@ -44,10 +44,10 @@ export default class NewPointPresenter {
       this.getAllOffersList,
     );
 
-    this.#pointFormComponent.setFormSubmitHandler ((point) => {
+    this.#pointFormComponent.setFormSubmitHandler((point) => {
       this.#changeData(
-        USER_ACTIONS.ADD_POINT,
-        UPDATE_TYPES.MINOR,
+        UserActions.ADD_POINT,
+        UpdateType.MINOR,
         point,
       );
     });
