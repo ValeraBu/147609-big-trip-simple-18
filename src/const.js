@@ -1,7 +1,9 @@
+import {getCurrentTime} from './utils/point.js';
+
 const DEFAULT_POINT = {
-  basePrice: 500,
-  dateFrom: '2022-10-10T22:55:56.845Z',
-  dateTo: '2022-10-17T22:55:56.845Z',
+  basePrice: null,
+  dateFrom: getCurrentTime(),
+  dateTo: getCurrentTime(),
   destination: {
     name: '',
     description: '',
@@ -11,39 +13,45 @@ const DEFAULT_POINT = {
   type: 'taxi',
 };
 
-const SORT_TYPES = {
+const SortType = {
   DAY: 'day',
   PRICE: 'price'
 };
 
-const FILTER_TYPES = {
+const FilterType = {
   EVERYTHING: 'Everything',
   FUTURE: 'Future'
 };
 
-const UPDATE_TYPES = {
+const UpdateType = {
   PATCH: 'PATCH',
   MINOR: 'MINOR',
   MAJOR: 'MAJOR',
   INIT: 'INIT',
 };
 
-const USER_ACTIONS = {
+const UserActions = {
   UPDATE_POINT: 'UPDATE_POINT',
   ADD_POINT: 'ADD_POINT',
   DELETE_POINT: 'DELETE_POINT',
 };
 
 const EmptyListTextValues = {
-  [FILTER_TYPES.EVERYTHING]: 'Click New Event to create your first point',
-  [FILTER_TYPES.FUTURE]: 'There are no future events now',
+  [FilterType.EVERYTHING]: 'Click New Event to create your first point',
+  [FilterType.FUTURE]: 'There are no future events now',
+};
+
+const Mode = {
+  DEFAULT: 'DEFAULT',
+  EDITING: 'EDITING',
 };
 
 export {
-  FILTER_TYPES,
-  SORT_TYPES,
-  UPDATE_TYPES,
-  USER_ACTIONS,
+  FilterType,
+  SortType,
+  UpdateType,
+  UserActions,
   DEFAULT_POINT,
-  EmptyListTextValues
+  EmptyListTextValues,
+  Mode
 };
